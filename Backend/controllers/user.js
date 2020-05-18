@@ -8,7 +8,8 @@ exports.createUser = (req,res,next)=>{
         email:req.body.email,
         password: hash,
         name: req.body.name,
-        surname: req.body.surname
+        surname: req.body.surname,
+        admin: false
       });
       user.save().then(result=>{
           res.status(201).json({

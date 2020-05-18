@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
+const postBoxRoutes = require('./routes/postBox');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 app.use(bodyParser.json());
@@ -32,7 +34,8 @@ mongoose.connect("mongodb+srv://dbVidMatic:projekt123@smartpostbox-58poe.mongodb
  * All routes and URL's
  */
 app.use("/api/user",userRoutes);
-
+app.use("/api/postBox", postBoxRoutes);
+app.use("/api/admin", adminRoutes);
 module.exports = app;
 
 /**
