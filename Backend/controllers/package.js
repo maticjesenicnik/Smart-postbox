@@ -1,8 +1,10 @@
 const PackageShcema = require('../models/package');
 
 exports.deliverPackage = (req,res,next) =>{
-    req.body.username = "vidko123";
-    PackageShcema.findOne({ownersUsername: req.body.username}).then(package =>{
+
+    req.body.qrCode = "412941232";
+    
+    PackageShcema.findOne({qrCode: req.body.qrCode}).then(package =>{
         package.deliverd = true;
         package.save().then(modifiedPackage =>{
             res.status(201).json({

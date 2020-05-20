@@ -8,6 +8,7 @@ exports.addPostBox = (req,res,next)=>{
     const postBox = new PostBox({
         qrCode: req.body.qrCode,
         opened: false,
+        heater: false,
         requestForOpen: false,
         activationCode: req.body.activationCode,
         owner: null

@@ -11,6 +11,7 @@ exports.createUser = (req,res,next)=>{
   req.body.name="vid";
   req.body.surname="sovic";
   */
+
     bcrypt.hash(req.body.password, 10).then(hash=>{
       const user = new User({
         username:req.body.username,
@@ -34,10 +35,12 @@ exports.createUser = (req,res,next)=>{
 }
 
 exports.loginUser = (req,res,next) =>{
+
   /* Testni podatki
   req.body.username="vidko123";
   req.body.password="geslo123";
   */
+
     let fetchedUser;
     User.findOne({username: req.body.username})
     .then(user =>{
@@ -70,7 +73,9 @@ exports.loginUser = (req,res,next) =>{
 
 exports.getRequest = (req,res,next) =>{
 
+  /*
   req.params.userId="5ec15b1cfc73bf4f3856ed45";
+  */
 
   const userId = req.params.userId;
   const postBoxQuery = PostBox.find({owner: userId, requestForOpen:true});
@@ -83,6 +88,34 @@ exports.getRequest = (req,res,next) =>{
   }).catch(error =>{
     res.status(500).json({
       message:"Getting requests failed!"
+    })
+  })
+}
+
+exports.openPostBox = (req,res,next)=>{
+
+  /*  Testni podatki
+   req.params.idPostBox = "5ec29495496ccb0868caf685"; 
+   */
+
+  const idPostBox = req.params.idPostBox;
+  const postBoxQuery = PostBox.findOne({_id:idPostBox, opened: false});
+
+  postBoxQuery.then(document =>{
+    document.opened = true;
+    document.save().then(modifiedPostBox =>{
+      res.status(201).json({
+        message: 'Post box opened!',
+        modifiedPostBox: modifiedPostBox
+      })
+    }).catch(error =>{
+      res.status(500).json({
+        message: 'Something went wrong'
+      })
+    })
+  }).catch(error =>{
+    res.status(500).json({
+      message: 'Opening post box failed!'
     })
   })
 }

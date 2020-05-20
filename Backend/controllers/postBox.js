@@ -42,3 +42,51 @@ exports.addToMyPostBoxes = (req,res,next) =>{
         })
     })
 }
+
+exports.turnHeaterOn = (req,res,next)=>{
+
+    const idPostBox = req.params.idPostBox;
+    const postBoxQuery = PostBox.findOne({_id:idPostBox, heater: false});
+
+    postBoxQuery.then(document =>{
+        document.heater = true;
+        document.save().then(modifiedPostBox =>{
+            res.status(201).json({
+                message: 'Heater is ON!',
+                modifiedPostBox: modifiedPostBox
+            })
+        }).catch(error =>{
+            res.status(500).json({
+                message: 'Something went wrong!'
+            })
+        })
+    }).catch(error =>{
+        res.status(500).json({
+            message: 'Turning heater ON wasnt successfull'
+        })
+    })
+  }
+
+  exports.turnHeaterOff = (req,res,next)=>{
+
+    const idPostBox = req.params.idPostBox;
+    const postBoxQuery = PostBox.findOne({_id:idPostBox, heater: true});
+
+    postBoxQuery.then(document =>{
+        document.heater = false;
+        document.save().then(modifiedPostBox =>{
+            res.status(201).json({
+                message: 'Heater is OFF!',
+                modifiedPostBox: modifiedPostBox
+            })
+        }).catch(error =>{
+            res.status(500).json({
+                message: 'Something went wrong!'
+            })
+        })
+    }).catch(error =>{
+        res.status(500).json({
+            message: 'Turning heater OFF wasnt successfull'
+        })
+    })
+  }

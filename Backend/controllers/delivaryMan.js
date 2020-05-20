@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const delivaryGuySchema = require('../models/delivaryMan');
 const postBoxSchema = require('../models/postBox');
+const PostBox = require('../models/postBox');
 
 exports.loginDeliveryGuy = (req,res,next) =>{
     let fetchedDelivey;
@@ -36,7 +37,7 @@ exports.loginDeliveryGuy = (req,res,next) =>{
 
 exports.sendRequestForOpen = (req,res,next) =>{
 
-  /*
+  /*  Testni podatki
   req.body.qrCode = "24124142";
   */
  
@@ -54,6 +55,34 @@ exports.sendRequestForOpen = (req,res,next) =>{
   }).catch(error =>{
     res.status(500).json({
       message: 'Request error'
+    })
+  })
+}
+
+exports.closePostBox = (req,res,next) =>{
+
+    /*  Testni podatki
+   req.params.idPostBox = "24124142"; 
+   */
+
+  const qrCode = req.body.qrCode;
+  const postBoxQuery = PostBox.findOne({qrCode: qrCode, opened: true});
+
+  postBoxQuery.then(document =>{
+    document.opened = false;
+    document.save().then(modifiedPostBox =>{
+      res.status(201).json({
+        message: 'Post box closed!',
+        modifiedPostBox: modifiedPostBox
+      })
+    }).catch(error =>{
+      res.status(500).json({
+        message: 'Something went wrong'
+      })
+    })
+  }).catch(error =>{
+    res.status(500).json({
+      message: 'Closing post box failed!'
     })
   })
 }
