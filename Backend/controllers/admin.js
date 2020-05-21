@@ -9,6 +9,7 @@ exports.addPostBox = (req,res,next)=>{
         qrCode: req.body.qrCode,
         opened: false,
         heater: false,
+        weightPackages: 0.0,
         requestForOpen: false,
         activationCode: req.body.activationCode,
         owner: null
@@ -27,16 +28,19 @@ exports.addPostBox = (req,res,next)=>{
 
 exports.addPackage = (req,res,next)=>{
 
-    /*Testni podatki
-    req.body.qrCode="412941232";
-    req.body.username="vidko123";
+    /* Testni podatki
+    req.body.qrCode = "41241242";
+    req.body.weight = 32.4;
+    req.body.userId = "5ec4368707b6d60f64cfde91";
+    req.body.postBoxId = "5ec29495496ccb0868caf685";
     */
 
     const package = Package({
         qrCode: req.body.qrCode,
-        weight: 40.2,
+        weight: req.body.weight,
         deliverd: false,
-        ownersUsername: req.body.username
+        ownersId: req.body.userId,
+        postBoxId: req.body.postBoxId
     })
     package.save().then(createdPackage =>{
         res.status(201).json({

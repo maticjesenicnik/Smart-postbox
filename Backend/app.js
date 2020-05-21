@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
 const userRoutes = require('./routes/user');
 const postBoxRoutes = require('./routes/postBox');
 const adminRoutes = require('./routes/admin');
@@ -41,6 +42,9 @@ app.use("/api/admin", adminRoutes);
 module.exports = app;
 
 /**
+ * Zagon servernja
+ * -  npm run start-server
+ * 
  * Instaliral sem naslednje:
  * -    npm install
  * -    npm install --save express

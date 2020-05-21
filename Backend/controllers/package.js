@@ -2,9 +2,11 @@ const PackageShcema = require('../models/package');
 
 exports.deliverPackage = (req,res,next) =>{
 
+    /*  Testni podatki
     req.body.qrCode = "412941232";
-    
-    PackageShcema.findOne({qrCode: req.body.qrCode}).then(package =>{
+    */
+
+    PackageShcema.findOne({qrCode: req.body.qrCode, deliverd: false}).then(package =>{
         package.deliverd = true;
         package.save().then(modifiedPackage =>{
             res.status(201).json({
@@ -18,7 +20,7 @@ exports.deliverPackage = (req,res,next) =>{
         })
     }).catch(error =>{
         res.status(500).json({
-            message: 'Username not found!'
+            message: 'User not found!'
         })
     })
 }
