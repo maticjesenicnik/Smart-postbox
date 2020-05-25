@@ -28,7 +28,7 @@ exports.addPostBox = (req,res,next)=>{
 
 exports.addPackage = (req,res,next)=>{
 
-    /* Testni podatki
+   /* Testni podatki
     req.body.qrCode = "41241242";
     req.body.weight = 32.4;
     req.body.userId = "5ec4368707b6d60f64cfde91";

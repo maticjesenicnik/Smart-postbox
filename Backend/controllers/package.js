@@ -24,3 +24,20 @@ exports.deliverPackage = (req,res,next) =>{
         })
     })
 }
+
+exports.showMyPackages = (req,res,next)=>{
+    
+    const userId = req.params.userId;
+    const packageQuery = PackageShcema.find({ownersId: userId, deliverd: false});
+
+    packageQuery.then(documents =>{
+        res.status(200).json({
+            message:"Getting packages successfully!",
+            packages: documents
+        });
+    }).catch(error =>{
+        res.status(500).json({
+            message: "Getting packages failed!"
+        });
+    })
+}
