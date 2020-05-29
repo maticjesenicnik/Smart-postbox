@@ -3,32 +3,31 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const PostBox = require('../models/postBox');
 
-exports.createUser = (req,res,next)=>{
+exports.createUser = function(req, res, next){
 
-  /* Testni podatki
-  req.body.username="vidko123";
-  req.body.password="geslo123";
-  req.body.name="vid";
-  req.body.surname="sovic";
-  */
-
-    bcrypt.hash(req.body.password, 10).then(hash=>{
+  // Testni podatki
+  // req.body.username="vidko1234";
+  // req.body.password="geslo123";
+  // req.body.name="vid";
+  // req.body.surname="sovic";
+  console.log(req.body.username, req.body.password);
+    bcrypt.hash(req.body.password, 10).then((hash) => {
       const user = new User({
-        username:req.body.username,
+        username: req.body.username,
         password: hash,
         name: req.body.name,
         surname: req.body.surname,
         admin: false
       });
-      user.save().then(result=>{
+      user.save().then(result => {
           res.status(201).json({
               message: 'User created!',
               result: result
           });
       })
-      .catch(err =>{
+      .catch(err => {
         res.status(500).json({
-            message: 'Invalid authentication credentials!'
+            message: user.username + ", " + user.password + ", " + user.name + ", " + user.surname + ", " + user.admin
         });
       });
     });
@@ -95,7 +94,7 @@ exports.getRequest = (req,res,next) =>{
 exports.openPostBox = (req,res,next)=>{
 
   /*  Testni podatki
-   req.params.idPostBox = "5ec29495496ccb0868caf685"; 
+   req.params.idPostBox = "5ec29495496ccb0868caf685";
    */
 
   const idPostBox = req.params.idPostBox;
