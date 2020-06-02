@@ -8,7 +8,7 @@ router.get("/getPackages/:userId", PackageController.showMyPackages);
 
 router.put("/openPostBox/:idPostBox", UserController.openPostBox);
 
-router.post("/signup", UserController.createUser);
+router.get("/signup", UserController.createUser);
 router.post("/login", UserController.loginUser);
 
 module.exports = router;

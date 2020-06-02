@@ -5,21 +5,21 @@ const PostBox = require('../models/postBox');
 
 exports.createUser = (req,res,next)=>{
 
-  /* Testni podatki
-  req.body.username="vidko123";
-  req.body.password="geslo123";
-  req.body.name="vid";
-  req.body.surname="sovic";
+ /*
+  req.body.username="vidsovic1";
+  req.body.password="lalalala";
+  req.body.name="viwadd";
+  req.body.surname="soviwadwdac";
   */
 
     bcrypt.hash(req.body.password, 10).then(hash=>{
       const user = new User({
-        username:req.body.username,
+        username: req.body.username,
         password: hash,
         name: req.body.name,
         surname: req.body.surname,
         admin: false
-      });
+      })
       user.save().then(result=>{
           res.status(201).json({
               message: 'User created!',

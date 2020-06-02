@@ -94,9 +94,11 @@ exports.turnHeaterOn = (req,res,next)=>{
 
   exports.checkIfPackagesArrived = (req,res,next)=>{
       
-    /*
+    
     req.body.weightFromPostBox = 30.4;
-    */
+    req.params.userId="5ec4368707b6d60f64cfde91";
+    req.params.postBoxId="5ec29495496ccb0868caf685";
+
 
     const postBoxId = req.params.postBoxId;
     const ownersId = req.params.userId;
