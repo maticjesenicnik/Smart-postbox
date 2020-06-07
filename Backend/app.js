@@ -44,7 +44,7 @@ module.exports = app;
 /**
  * Zagon servernja
  * -  npm run start-server
- * 
+ *
  * Instaliral sem naslednje:
  * -    npm install
  * -    npm install --save express
