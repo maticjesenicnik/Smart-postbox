@@ -5,38 +5,34 @@ const PostBox = require('../models/postBox');
 
 exports.createUser = function(req, res, next){
 
-    bcrypt.hash(req.body.password, 10).then(hash=>{
-
   // Testni podatki
   // req.body.username="vidko1234";
   // req.body.password="geslo123";
   // req.body.name="vid";
   // req.body.surname="sovic";
-  console.log(req.body.username, req.body.password);
-    bcrypt.hash(req.body.password, 10).then((hash) => {
-      const user = new User({
-        username: req.body.username,
-        password: hash,
-        name: req.body.name,
-        surname: req.body.surname,
-        admin: false
-      })
-      user.save().then(result=>{
+  bcrypt.hash(req.body.password, 10).then((hash) => {
+    const user = new User({
+      username: req.body.username,
+      password: hash,
+      name: req.body.name,
+      surname: req.body.surname,
+      admin: false
+    })
+    user.save().then(result=>{
 
-      });
-      user.save().then(result => {
-          res.status(201).json({
-              message: 'User created!',
-              result: result
-          });
-      })
-      .catch(err => {
-        res.status(500).json({
-            message: user.username + ", " + user.password + ", " + user.name + ", " + user.surname + ", " + user.admin
+    });
+    user.save().then(result => {
+        res.status(201).json({
+            message: 'User created!',
+            result: result
         });
+    })
+    .catch(err => {
+      res.status(500).json({
+          message: user.username + ", " + user.password + ", " + user.name + ", " + user.surname + ", " + user.admin
       });
     });
-})
+  });
 }
 
 exports.loginUser = (req,res,next) =>{
@@ -102,8 +98,7 @@ exports.openPostBox = (req,res,next)=>{
   /*  Testni podatki
    req.params.idPostBox = "5ec29495496ccb0868caf685";
   */
-
-  const idPostBox = req.params.idPostBox;
+  const idPostBox = req.body.id;
   const postBoxQuery = PostBox.findOne({_id:idPostBox, opened: false});
 
   postBoxQuery.then(document =>{

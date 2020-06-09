@@ -3,11 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
+import { PostboxesComponent } from './user/postboxes/postboxes.component';
+import { DeliveryLoginComponent } from './user/deliveryMan/login/login.component';
+import { RequestOpenComponent } from './user/deliveryMan/request-open/request-open.component';
 
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'postboxes', component: PostboxesComponent, canActivate: [AuthGuard]},
+  {path: 'request', component: RequestOpenComponent, canActivate: [AuthGuard]},
+  {path: 'delivery_login', component: DeliveryLoginComponent}
 ];
 
 @NgModule({

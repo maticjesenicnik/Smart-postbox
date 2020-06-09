@@ -13,8 +13,5 @@ mat-card {
   margin: 0 auto;
   margin-top: 15vh;
   padding: 30px;
-}
-
-.mat-focused .mat-form-field-label {
-  color: black;
+  text-align: center;
 }

@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  <span> <a routerLink="/">Smartbox Web App</a></span>
+  <span class="spacer"></span>
+  <button mat-icon-button color="accent" aria-label="menuIcon" [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button *ngIf="!userIsAuthenticated" mat-menu-item routerLink="/login">
+      <mat-icon>person</mat-icon>
+      <span>Sign into your account</span>
+    </button>
+    <button *ngIf="!userIsAuthenticated" mat-menu-item routerLink="/delivery_login">
+      <mat-icon>person</mat-icon>
+      <span>Sign into your delivery account</span>
+    </button>
+    <button *ngIf="!userIsAuthenticated" mat-menu-item routerLink="/register">
+      <mat-icon>person_add</mat-icon>
+      <span>Create an account</span>
+    </button>
+    <button *ngIf="userIsAuthenticated" mat-menu-item routerLink="/postboxes">
+      <mat-icon>list_alt</mat-icon>
+      <span>My postboxes</span>
+    </button>
+    <button *ngIf="userIsAuthenticated" mat-menu-item routerLink="/request">
+      <mat-icon>lock_open</mat-icon>
+      <span>Request to open a box</span>
+    </button>
+    <button *ngIf="userIsAdmin" mat-menu-item routerLink="/admin">
+      <mat-icon>admin</mat-icon>
+      <span>Admin panel</span>
+    </button>
+    <button *ngIf="userIsAuthenticated" mat-menu-item (click)="onLogout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+

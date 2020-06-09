@@ -1,5 +1,8 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <mat-card-header>
+    <mat-card-title>Create an account</mat-card-title>
+  </mat-card-header>
   <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" enctype="application/x-www-form-urlencoded">
     <mat-form-field>
       <input matInput name="username" ngModel type="username" placeholder="Username" #usernameInput="ngModel" required>

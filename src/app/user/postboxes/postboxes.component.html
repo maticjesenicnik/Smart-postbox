@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <th *ngFor="let title of displayedColumns">{{ title }}</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let postbox of postBoxes">
+      <td>{{ postbox.id }}</td>
+      <td>{{ postbox.qr }}</td>
+      <td><button mat-raised-button color="accent" *ngIf="postbox.requestForOpen" (click)="openPostbox(postbox.id)">Odpri nabiralnik</button><button mat-raised-button id="something" *ngIf="!postbox.requestForOpen">Disabled</button></td>
+      <td><mat-slide-toggle [(ngModel)]="postbox.opened" disabled><span *ngIf="postbox.opened">Opened</span><span *ngIf="!postbox.opened">Closed</span></mat-slide-toggle></td>
+      <td><mat-slide-toggle [(ngModel)]="postbox.heater" (change)="heat(postbox.id, postbox.heater)">Heater</mat-slide-toggle></td>
+      <td>{{ postbox.activationCode }}</td>
+      <td>{{ postbox.ownerId }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<app-new-postbox></app-new-postbox>

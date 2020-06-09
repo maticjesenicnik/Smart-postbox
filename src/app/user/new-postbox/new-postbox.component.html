@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <mat-card-header>
+    <mat-card-title>Activate your smartbox</mat-card-title>
+  </mat-card-header>
+  <form (submit)="addBox(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input matInput name="activationCode" ngModel type="text" placeholder="Activation Code" #ActivationCodeInput="ngModel" required>
+      <mat-error *ngIf="ActivationCodeInput.invalid">Please enter a valid activation code</mat-error>
+    </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Activate</button>
+  </form>
+</mat-card>

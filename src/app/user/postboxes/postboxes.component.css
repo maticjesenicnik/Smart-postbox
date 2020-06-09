@@ -1,0 +1,12 @@
+table {
+  width: 70vw;
+  margin: 0 auto;
+  margin-top: 10vh;
+}
+td{
+  text-align: center;
+  border: 1px solid gray;
+}
+button{
+  width: 100%;
+}
