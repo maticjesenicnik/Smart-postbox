@@ -11,6 +11,7 @@
       <td><mat-slide-toggle [(ngModel)]="postbox.heater" (change)="heat(postbox.id, postbox.heater)">Heater</mat-slide-toggle></td>
       <td>{{ postbox.activationCode }}</td>
       <td>{{ postbox.ownerId }}</td>
+      <td><button mat-raised-button color="warn" *ngIf="postbox.opened" (click)="closeBox(postbox.qr)">Close</button></td>
     </tr>
   </tbody>
 </table>

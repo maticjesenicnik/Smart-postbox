@@ -32,10 +32,10 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 /* HTTP */
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ClosePostboxComponent } from './user/deliveryMan/close-postbox/close-postbox.component';
+import { ClosePostboxComponent } from './user/close-postbox/close-postbox.component';
 import { DeliverPackageComponent } from './user/deliveryMan/deliver-package/deliver-package.component';
-import { RequestOpenComponent } from './user/deliveryMan/request-open/request-open.component';
 import { NewPostboxComponent } from './user/new-postbox/new-postbox.component';
+import { RequestOpenComponent } from './user/request-open/request-open.component';
 
 
 @NgModule({
@@ -48,9 +48,9 @@ import { NewPostboxComponent } from './user/new-postbox/new-postbox.component';
     PostboxesComponent,
     ClosePostboxComponent,
     DeliverPackageComponent,
-    RequestOpenComponent,
     DeliveryLoginComponent,
-    NewPostboxComponent
+    NewPostboxComponent,
+    RequestOpenComponent
   ],
   imports: [
     BrowserModule,

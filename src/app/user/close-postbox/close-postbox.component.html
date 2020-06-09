@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <mat-card-header>
+    <mat-card-title>Close smartbox open</mat-card-title>
+  </mat-card-header>
+  <form (submit)="closeBox(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input matInput name="requestCode" ngModel type="text" placeholder="Request Code" #RequestCodeInput="ngModel" required>
+      <mat-error *ngIf="RequestCodeInput.invalid">Please enter a valid qr code</mat-error>
+    </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Close</button>
+  </form>
+</mat-card>

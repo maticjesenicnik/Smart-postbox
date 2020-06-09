@@ -1,1 +1,14 @@
-<p>request-open works!</p>
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <mat-card-header>
+    <mat-card-title>Request smartbox open</mat-card-title>
+  </mat-card-header>
+  <form (submit)="addBox(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input matInput name="requestCode" ngModel type="text" placeholder="Request Code" #RequestCodeInput="ngModel" required>
+      <mat-error *ngIf="RequestCodeInput.invalid">Please enter a valid request code</mat-error>
+    </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Request</button>
+  </form>
+</mat-card>
+

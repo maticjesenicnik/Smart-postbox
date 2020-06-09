@@ -3,7 +3,7 @@ const DeliveryGuyController = require('../controllers/delivaryMan');
 const PackageController = require('../controllers/package');
 const router = express.Router();
 
-router.put("/closePostBox", DeliveryGuyController.closePostBox); // "Zaprl sem nabiralnik"
+router.post("/closePostBox", DeliveryGuyController.closePostBox); // "Zaprl sem nabiralnik"
 router.put("/deliverPackage", PackageController.deliverPackage); // Prikaže vse pakete, ki jih mora dostaviti
 
 router.post("/login", DeliveryGuyController.loginDeliveryGuy); // login delivery man

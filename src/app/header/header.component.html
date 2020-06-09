@@ -25,6 +25,10 @@
       <mat-icon>lock_open</mat-icon>
       <span>Request to open a box</span>
     </button>
+    <button *ngIf="userIsAuthenticated" mat-menu-item routerLink="/close">
+      <mat-icon>lock</mat-icon>
+      <span>Close a box</span>
+    </button>
     <button *ngIf="userIsAdmin" mat-menu-item routerLink="/admin">
       <mat-icon>admin</mat-icon>
       <span>Admin panel</span>

@@ -40,12 +40,12 @@ exports.sendRequestForOpen = (req,res,next) =>{
   /*  Testni podatki
   req.body.qrCode = "24124142";
   */
- 
+
   postBoxSchema.findOne({qrCode: req.body.qrCode}).then(requestedBox =>{
     requestedBox.requestForOpen = true;
     requestedBox.save().then(modidiedPostBox =>{
       res.status(201).json({
-        message: 'Request was send successfuly!'
+        message: 'Request was sent successfuly!'
       })
     }).catch(error =>{
       res.status(500).json({
@@ -62,7 +62,7 @@ exports.sendRequestForOpen = (req,res,next) =>{
 exports.closePostBox = (req,res,next) =>{
 
     /*  Testni podatki
-   req.params.idPostBox = "24124142"; 
+   req.params.idPostBox = "24124142";
    */
 
   const qrCode = req.body.qrCode;

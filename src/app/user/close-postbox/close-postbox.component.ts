@@ -7,11 +7,11 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-request-open',
-  templateUrl: './request-open.component.html',
-  styleUrls: ['./request-open.component.css']
+  selector: 'app-close-postbox',
+  templateUrl: './close-postbox.component.html',
+  styleUrls: ['./close-postbox.component.css']
 })
-export class RequestOpenComponent implements OnInit, OnDestroy {
+export class ClosePostboxComponent implements OnInit, OnDestroy {
   isLoading = false;
   private authStatusSub: Subscription;
   constructor(public authService: AuthService, public http: HttpClient, private router: Router){}
@@ -26,16 +26,14 @@ export class RequestOpenComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.authStatusSub.unsubscribe();
   }
-  addBox(form:NgForm){
+  closeBox(form:NgForm){
     if(form.invalid){
       return;
     }
     this.isLoading = true;
     const postBoxData: Postbox = {id: null, qrCode: form.value.requestCode, requestForOpen: null, opened: null, heater: null, activationCode: null, owner: null};
-    this.http.post<{message: string, postbox: Postbox}>("http://localhost:3000/api/delivaryMan/requestOpen", postBoxData).subscribe((dataResponse) => {
-      console.log(dataResponse.message);
-      this.router.navigate(['/']);
+    this.http.post<{message: string, modifiedPostBox: Postbox}>("http://localhost:3000/api/delivaryMan/closePostBox", postBoxData).subscribe(() => {
+      this.router.navigate(['/postboxes']);
     })
-    this.isLoading = false;
   }
 }
