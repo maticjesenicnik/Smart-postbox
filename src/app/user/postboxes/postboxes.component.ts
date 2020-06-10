@@ -46,14 +46,14 @@ export class PostboxesComponent implements OnInit {
   openPostbox(id: string){
     const postBoxData: Postbox = {id: id, qrCode: null, requestForOpen: null, opened: null, heater: null, activationCode: null, owner: null};
     this.http.post<{message: string, modifiedPostBox: Postbox}>("http://localhost:3000/api/user/openPostBox", postBoxData).subscribe(() => {
-      this.router.navigate(['/postboxes']);
+      this.postboxesService.getPostboxes(this.userId);
     })
   }
 
   closeBox(qr: string){
     const postBoxData: Postbox = {id: null, qrCode: qr, requestForOpen: null, opened: null, heater: null, activationCode: null, owner: null};
     this.http.post<{message: string, modifiedPostBox: Postbox}>("http://localhost:3000/api/delivaryMan/closePostBox", postBoxData).subscribe(() => {
-      this.router.navigate(['/postboxes']);
+      this.postboxesService.getPostboxes(this.userId);
     })
   }
 
@@ -62,16 +62,16 @@ export class PostboxesComponent implements OnInit {
       const postBoxData: Postbox = {id: id, qrCode: null, requestForOpen: null, opened: null, heater: null, activationCode: null, owner: null};
       this.http.post<{message: string, modifiedPostBox: Postbox}>("http://localhost:3000/api/postBox/turnHeaterOff", postBoxData).subscribe((responseData) => {
         console.log(responseData.modifiedPostBox.heater);
-        this.router.navigate(['/postboxes']);
+        this.postboxesService.getPostboxes(this.userId);
       })
     } else {
       const postBoxData: Postbox = {id: id, qrCode: null, requestForOpen: null, opened: null, heater: null, activationCode: null, owner: null};
       this.http.post<{message: string, modifiedPostBox: Postbox}>("http://localhost:3000/api/postBox/turnHeaterOn", postBoxData).subscribe((responseData) => {
         console.log(responseData.modifiedPostBox.heater);
-        this.router.navigate(['/postboxes']);
+        this.postboxesService.getPostboxes(this.userId);
       })
     }
-    this.router.navigate(['/postboxes']);
+    // this.postboxesService.getPostboxes(this.userId);
   }
 
   displayedColumns: string[] = ['ID', 'QR Code', 'Open request', 'Opened', 'Heating', 'Activation Code' , 'ownerId', 'Close'];

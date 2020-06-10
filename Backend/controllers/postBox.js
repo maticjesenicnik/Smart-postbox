@@ -1,11 +1,11 @@
 const PostBox = require('../models/postBox');
 const Package = require('../models/package');
+const chechAuth = require('../middleware/check-auth');
 
 /**
  * Funkcija dobi kot parameter userId in ga primerja z ownerjem v modelu PostBox
  */
-exports.showMyPostBoxes = (req,res,next)=>{
-
+exports.showMyPostBoxes = (req,res,next) => {
     const userId = req.params.userId;
     const postBoxQuery = PostBox.find({owner: userId});
 

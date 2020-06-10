@@ -1,8 +1,9 @@
 const express = require('express');
 const postBoxController = require('../controllers/postBox');
 const router = express.Router();
+const checkAuth = require("../middleware/check-auth");
 
-router.get('/:userId',postBoxController.showMyPostBoxes); // Prikaži vse postboxe svoje
+router.get('/:userId', checkAuth ,postBoxController.showMyPostBoxes); // Prikaži vse postboxe svoje
 
 router.post('/turnHeaterOn', postBoxController.turnHeaterOn); // Turn on heater
 router.post('/turnHeaterOff', postBoxController.turnHeaterOff); // Turn off heater
