@@ -34,7 +34,7 @@ export class NewPostboxComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     const postBoxData: Postbox = {id: null, qrCode: null, requestForOpen: null, opened: null, heater: null, activationCode: form.value.activationCode, owner: this.userId};
     this.http.post<{message: string, postbox: Postbox}>("http://localhost:3000/api/postBox/add", postBoxData).subscribe((dataResponse) => {
-      console.log(dataResponse.message);
+      location.reload();
     })
     this.isLoading = false;
   }
